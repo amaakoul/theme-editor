@@ -1,0 +1,59 @@
+{
+  "name": "theme-editor",
+  "version": "0.1.0",
+  "description": "Theme Edition application",
+  "contributors": [
+    {
+      "name": "Ahmed MAKOUL"
+    }
+  ],
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint **/*.js --fix",
+    "test": "jest",
+    "test:dev": "jest --watch --coverage=false --verbose=false",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
+    "babel-plugin-extension-resolver": "^1.0.12",
+    "browser-monads": "^1.0.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-transform-stub": "^2.0.0",
+    "next": "10.1.2",
+    "next-redux-wrapper": "^6.0.2",
+    "prettier": "^2.2.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-redux": "^7.2.3",
+    "redux": "^4.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
+    "@babel/plugin-syntax-jsx": "^7.12.13",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/register": "^7.13.14",
+    "@types/enzyme": "^3.10.8",
+    "@types/jest": "^26.0.22",
+    "babel-jest": "^26.6.3",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-react": "^7.23.1",
+    "jest": "^26.6.3",
+    "react-test-renderer": "^16.14.0"
+  }
+}
