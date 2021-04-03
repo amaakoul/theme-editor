@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { window } from 'browser-monads'
 import { useDispatch } from 'react-redux'
-import ThemeEditor from '../components/themeEditor'
+import FormEditor from '../components/formEditor'
 import WelcomeMessage from '../components/welcomeMessage'
 import { useSelector } from 'react-redux'
 import { wrapper } from '../redux/store'
@@ -140,9 +140,7 @@ export default function Home({ Component, pageProps } = {}) {
           )}
         </div>
         <div>
-          {isEditing && (
-            <ThemeEditor onSubmit={() => saveInStorage()} styles={styles}></ThemeEditor>
-          )}
+          {isEditing && <FormEditor onSubmit={() => saveInStorage()} styles={styles}></FormEditor>}
         </div>
       </main>
       <footer className={styles.footer}>
