@@ -1,12 +1,11 @@
 import { useRouter } from 'next/router'
 import { useState, useContext } from 'react'
-import AccordionGroups from '../components/accordion'
 import { Paper } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
-import { Snackbar } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import AccordionGroups from '../components/accordion'
+import AlertMessage from '../components/alertMessage'
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -82,23 +81,23 @@ export default function FormEditor({ styles, container, onSubmit } = {}) {
           categories={categories}
           className={styles.grid}
         ></AccordionGroups>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          className={classes.button}
-          startIcon={<SaveIcon />}
-          onClick={handleClick}
+        <AlertMessage
+          open={open}
+          alertData={{ type: 'success', message: 'This is a success message!' }}
+          callback={state => setOpen(state)}
         >
-          Save
-        </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.button}
+            startIcon={<SaveIcon />}
+            onClick={handleClick}
+          >
+            Save
+          </Button>
+        </AlertMessage>
       </Paper>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          This is a success message!
-        </Alert>
-        {/* <Alert severity="error">This is an error message!</Alert> */}
-      </Snackbar>
       <div className={styles.grid}>
         <h1
           className={styles.title}

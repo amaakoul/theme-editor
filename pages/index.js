@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import { window } from 'browser-monads'
 import { useDispatch } from 'react-redux'
 import FormEditor from '../components/formEditor'
-import WelcomeMessage from '../components/welcomeMessage'
 import { useSelector } from 'react-redux'
 import { wrapper } from '../redux/store'
 import EditIcon from '@material-ui/icons/Edit'
@@ -13,6 +12,8 @@ import CloseIcon from '@material-ui/icons/Close'
 import { makeStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button'
+import WelcomeMessage from '../components/welcomeMessage'
+import SimpleSnackbar from '../components/toast'
 
 const getLocalStorage = async () => {
   const rawSavedTheme = JSON.stringify(window.localStorage.getItem('theme'))
@@ -65,9 +66,10 @@ export default function Home({ Component, pageProps } = {}) {
         dispatch({ type: 'DATA_ORIGIN', payload: origin })
       })
   }
-  const saveInStorage = () => {
+  const saveInStorage = success => {
     console.log('store.theme :>> ', store.theme)
     window.localStorage.setItem('theme', JSON.stringify(store.theme))
+    // setEditing(success) // to close the form on success
   }
   const handleClick = ({ event, page = 'home' }) => {
     event.preventDefault()
@@ -140,7 +142,9 @@ export default function Home({ Component, pageProps } = {}) {
           )}
         </div>
         <div>
-          {isEditing && <FormEditor onSubmit={() => saveInStorage()} styles={styles}></FormEditor>}
+          {isEditing && (
+            <FormEditor onSubmit={ev => saveInStorage(ev)} styles={styles}></FormEditor>
+          )}
         </div>
       </main>
       <footer className={styles.footer}>
