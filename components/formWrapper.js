@@ -4,7 +4,7 @@ import { Paper } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
-import AccordionGroups from '../components/accordion'
+import FieldsGroup from '../components/fieldsGroup'
 import AlertMessage from '../components/alertMessage'
 
 const useStyles = makeStyles(theme => ({
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 import { useSelector, useDispatch } from 'react-redux'
 
-export default function FormEditor({ styles, container, onSubmit } = {}) {
+export default function FormWrapper({ styles, container, onSubmit } = {}) {
   const classes = useStyles()
   const store = useSelector(state => state)
   const dispatch = useDispatch()
@@ -77,11 +77,11 @@ export default function FormEditor({ styles, container, onSubmit } = {}) {
         <h1>Theme Editor</h1>
 
         {/* Form */}
-        <AccordionGroups
+        <FieldsGroup
           onClick={e => updateData({ ...e })}
           categories={categories}
           className={styles.grid}
-        ></AccordionGroups>
+        ></FieldsGroup>
 
         <AlertMessage
           open={open}

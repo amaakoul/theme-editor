@@ -13,7 +13,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button'
 import WelcomeMessage from '../components/welcomeMessage'
 import Toast from '../components/toast'
-import FormEditor from '../components/formEditor'
+import FormWrapper from '../components/formWrapper'
 
 const getLocalStorage = async () => {
   const rawSavedTheme = JSON.stringify(window.localStorage.getItem('theme'))
@@ -54,7 +54,7 @@ export default function Home({ Component, pageProps } = {}) {
   }, [])
 
   const fetchFromApi = async () => {
-    return fetch('/api/themeSchema', {
+    return fetch('/api/theme-schema', {
       method: 'GET',
       headers: new Headers(),
       mode: 'cors',
@@ -144,7 +144,7 @@ export default function Home({ Component, pageProps } = {}) {
         </div>
         <div>
           {isEditing && (
-            <FormEditor onSubmit={ev => saveInStorage(ev)} styles={styles}></FormEditor>
+            <FormWrapper onSubmit={ev => saveInStorage(ev)} styles={styles}></FormWrapper>
           )}
         </div>
       </main>
