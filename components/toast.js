@@ -4,7 +4,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 
-export default function SimpleSnackbar() {
+export default function Toast() {
   const [open, setOpen] = React.useState(false)
 
   const handleClick = () => {
@@ -21,7 +21,7 @@ export default function SimpleSnackbar() {
 
   return (
     <div>
-      <Button onClick={handleClick}>Open simple snackbar</Button>
+      <Button onClick={handleClick}>Open</Button>
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',

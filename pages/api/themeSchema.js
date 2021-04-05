@@ -1,56 +1,148 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+// Next API route
 
 export default (req, res) => {
   res.status(200).json({
     colors: {
       primary: {
-        fontColor: '#000000a',
+        values: {
+          color: '#000000a',
+        },
+        validator: ['^#[a-z0-9.]+()'],
+        template: '{color}',
       },
       primaryBackground: {
-        backgroundColor: '#ffffff',
+        values: {
+          color: '#ffffff',
+        },
+        validator: ['^#[a-z0-9.]+()'],
+        template: '{color}',
       },
       secondary: {
-        fontColor: '#ffffff',
+        values: {
+          color: '#ffffff',
+        },
+        validator: ['^#[a-z0-9.]+()'],
+        template: '{color}',
       },
       secondaryBackground: {
-        backgroundColor: '#4a86e8',
+        values: {
+          color: '#4a86e8',
+        },
+        validator: ['^#[a-z0-9.]+()'],
+        template: '{color}',
       },
       hightlight1: {
-        background: '#4a86e8',
+        values: {
+          color: '#4a86e8',
+        },
+        validator: ['^#[a-z0-9.]+()'],
+        template: '{color}',
       },
       hightlight2: {
-        background: '#ffab40',
+        values: {
+          color: '#ffab40',
+        },
+        validator: ['^#[a-z0-9.]+()'],
+        template: '{color}',
       },
     },
     sizes: {
-      text: { fontSize: ['1.1', 'em'] },
-      h1: { fontSize: ['1.4', 'em'] },
-      h2: { fontSize: ['1.2', 'em'] },
-      borderWidth: { borderWidth: ['1', 'px'] },
+      text: {
+        alias: 'fontSize',
+        values: {
+          float1: '1.1',
+          unit: 'rem',
+        },
+        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        template: '{float1} {unit}',
+      },
+      h1: {
+        alias: 'fontSize',
+        values: {
+          float1: '1.4',
+          unit: 'rem',
+        },
+        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        template: '{float1} {unit}',
+      },
+      h2: {
+        alias: 'fontSize',
+        values: {
+          float1: '1.2',
+          unit: 'rem',
+        },
+        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        template: '{float1} {unit}',
+      },
+      borderWidth: {
+        alias: 'borderWidth',
+        values: {
+          float1: '1',
+          unit: 'px',
+        },
+        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        template: '{float1} {unit}',
+      },
     },
     textField: {
       textSize: {
-        fontSize: '1.1',
+        values: {
+          float1: '1.1',
+          unit: 'rem',
+        },
+        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        template: '{float1} {unit}',
       },
       color: {
-        fontColor: '#000000',
+        values: {
+          color: '#000000',
+        },
+        validator: ['^#[a-z0-9.]+()'],
+        template: '{color}',
       },
       border: {
-        border: ['1px', 'solid', '#000000'],
+        values: {
+          float1: '1',
+          unit: 'px',
+          type: 'solid',
+          color: '#000000',
+        },
+        validator: ['^[0-9. ]+( )', ['px', 'em'], '[a-z.]+( )', '#[a-z0-9.]+()'],
+        template: '{float1} {unit} {type} {color}',
       },
       background: {
-        background: '#ffffff',
+        values: {
+          color: '#ffffff',
+        },
+        validator: ['^#[a-z0-9.]+()'],
+        template: '{color}',
+        // background: '#ffffff',
       },
     },
     buttons: {
       textSize: {
-        fontSize: '1.1',
+        values: {
+          float1: '1.1',
+          unit: 'rem',
+        },
+        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        template: '{float1} {unit}',
       },
       color: {
-        fontColor: ['calc(1.1*1.2)', 'rem'],
+        values: {
+          float1: '1.1',
+          float2: '1.1',
+          unit: 'rem',
+        },
+        validator: ['^[0-9. ]+( )', '[0-9.]+( )', ['px', 'em']],
+        template: 'calc({float1}*{float2}{unit})',
       },
       background: {
-        background: '#4a86e8',
+        values: {
+          color: '#4a86e8',
+        },
+        validator: ['^#[a-z0-9.]+()'],
+        template: '{color}',
       },
     },
   })

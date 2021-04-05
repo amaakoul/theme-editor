@@ -4,16 +4,16 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { window } from 'browser-monads'
 import { useDispatch } from 'react-redux'
-import FormEditor from '../components/formEditor'
 import { useSelector } from 'react-redux'
 import { wrapper } from '../redux/store'
+import { makeStyles } from '@material-ui/core/styles'
 import EditIcon from '@material-ui/icons/Edit'
 import CloseIcon from '@material-ui/icons/Close'
-import { makeStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button'
 import WelcomeMessage from '../components/welcomeMessage'
-import SimpleSnackbar from '../components/toast'
+import Toast from '../components/toast'
+import FormEditor from '../components/formEditor'
 
 const getLocalStorage = async () => {
   const rawSavedTheme = JSON.stringify(window.localStorage.getItem('theme'))
@@ -93,6 +93,7 @@ export default function Home({ Component, pageProps } = {}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <Toast></Toast>
         <div>
           {process.browser && !isEditing && (
             <WelcomeMessage value={isSavedTheme} styles={styles}></WelcomeMessage>

@@ -19,12 +19,39 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const objectToString = (obj = {}) => Object.entries(obj).join('').replace(',', ' : ')
+
+const validateField = (event, value, props, categorieId, id) => {
+  const { validator, values } = value
+  // build regex from attr schema
+  const regex = new RegExp(validator.join('').replace(',', '|'))
+  const isInputValid = regex.test(event.target.value)
+
+  // trigger click if the value is valid
+  if (isInputValid)
+    props.onClick({
+      [categorieId]: {
+        [id]: {
+          ...value,
+          // slit user input to update in store
+          values: Object.keys(values).reduce((acc, cur, i) => {
+            acc[cur] = event.target.value.split(' ')[i]
+            return acc
+          }, values),
+        },
+      },
+    })
+}
+
+const swapTemplateVariables = ({ values = {}, template = '' } = {}) =>
+  template.replace(/(?:{(.+?)})/g, x => values[x.slice(1, -1)])
+
 const ObjectToElement = ({ element = {} }) =>
   Object.keys(element).map(key => (
     <option key={key} value={key}>
       ${key}:{element[key]}
     </option>
   ))
+
 export default function AccordionGroups(props) {
   const classes = useStyles()
   console.log('props :>> ', props, props.categories)
@@ -46,35 +73,34 @@ export default function AccordionGroups(props) {
             <Typography className={classes.heading}>{categorieId}</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <List component="nav" className={classes.root} aria-label="mailbox folders">
+            <List component="nav" className={classes.root}>
               <Divider />
               {value.map(({ id, value = {} }) => (
                 <ListItem button divider key={id} value={id}>
                   <div key={id} value={id}>
-                    <ListItemText primary={id} secondary={Object.keys(value).map(key => key)} />
+                    <ListItemText primary={id} secondary={''} />- {value.alias || id} :{' '}
+                    {swapTemplateVariables(value)}
                     <Field
                       style={{ width: '100%', padding: '0em' }}
-                      text={objectToString(value)}
-                      placeholder={objectToString(value)}
+                      text={swapTemplateVariables(value)}
+                      placeholder={swapTemplateVariables(value)}
+                      data={value}
                       type="input"
                     >
-                      <ObjectToElement element={value}></ObjectToElement>
+                      <span>{swapTemplateVariables(value)}</span>
                       <input
                         type="text"
                         name="task"
-                        placeholder={objectToString(value)}
-                        onKeyDown={e =>
-                          e.key === 'Enter'
-                            ? props.onClick({
-                                [categorieId]: {
-                                  [id]: { [Object.keys(value).map(key => key)]: e.target.value },
-                                },
-                              })
+                        placeholder={
+                          typeof value === 'object'
+                            ? (value[Object.keys(value).map(key => key)] || {}).template
+                            : swapTemplateVariables(value)
+                        }
+                        onKeyDown={event =>
+                          event.key === 'Enter'
+                            ? validateField(event, value, props, categorieId, id)
                             : {}
                         }
-                        // onChange={e =>
-                        //   e.key === 'Enter' ? onClick({ [id]: { key: e.target.value } }) : {}
-                        // }
                       />
                     </Field>
                   </div>

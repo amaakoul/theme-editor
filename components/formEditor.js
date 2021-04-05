@@ -64,28 +64,29 @@ export default function FormEditor({ styles, container, onSubmit } = {}) {
     setOpen(true)
   }
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return
-    }
-
-    setOpen(false)
-  }
+  // const handleClose = (event, reason) => {
+  //   if (reason === 'clickaway') return
+  //   setOpen(false)
+  // }
 
   return (
     <div>
       <Paper elevation={3} style={{ backgroundColor: 'rgb(176 22 22)', padding: '1em' }}>
         <h1>Theme Editor</h1>
+
+        {/* Form */}
         <AccordionGroups
           onClick={e => updateData({ ...e })}
           categories={categories}
           className={styles.grid}
         ></AccordionGroups>
+
         <AlertMessage
           open={open}
-          alertData={{ type: 'success', message: 'This is a success message!' }}
+          data={{ type: 'success', message: 'This is a success message!' }}
           callback={state => setOpen(state)}
         >
+          {/* submit form */}
           <Button
             variant="contained"
             color="primary"
@@ -99,24 +100,6 @@ export default function FormEditor({ styles, container, onSubmit } = {}) {
         </AlertMessage>
       </Paper>
       <div className={styles.grid}>
-        <h1
-          className={styles.title}
-          onClick={() => updateData({ textField: { color: { fontColor: 'blue' } } })}
-        >
-          llEDIT::{' '}
-        </h1>
-        <br />
-        <h1
-          className={styles.title}
-          onClick={() =>
-            updateData({
-              colors: { primary: { fontColor: '#ccccccccc' } },
-              textField: { color: { fontColor: 'zzzzzzzz' } },
-            })
-          }
-        >
-          ll EDIT::{' '}
-        </h1>
         <button className={styles.card} onClick={() => router.push('/')}>
           GO BACK HOME
         </button>

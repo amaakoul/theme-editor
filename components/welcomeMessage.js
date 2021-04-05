@@ -1,4 +1,4 @@
-const WelcomeMessage = ({ value, styles }) => (
+const WelcomeMessage = ({ value, styles, user }) => (
   <div>
     {value ? (
       <span className={styles.title}>
@@ -7,7 +7,7 @@ const WelcomeMessage = ({ value, styles }) => (
       </span>
     ) : (
       <span className={styles.title}>
-        Welcome, NEW USER
+        Welcome, {user}
         <br /> There's no saved theme. please edit your config and save it.
       </span>
     )}
