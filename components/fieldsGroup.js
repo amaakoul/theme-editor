@@ -6,7 +6,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 import { List, ListItem, ListItemText, Divider } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Field from '../components/field'
+import Field from './field'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -52,7 +52,7 @@ const ObjectToElement = ({ element = {} }) =>
     </option>
   ))
 
-export default function AccordionGroups(props) {
+export default function FieldsGroup(props) {
   const classes = useStyles()
   console.log('props :>> ', props, props.categories)
   return (
