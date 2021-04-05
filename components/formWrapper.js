@@ -28,10 +28,42 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
   // console.log('state payload :>> ', state)
 
   const updateData = ({ colors, textField, sizes, buttons }) => {
-    const themeData = {
+    const dataModel = {
       colors: { ...theme.colors, ...colors },
-      sizes: { ...theme.sizes, ...sizes },
-      textField: { ...theme.textField, ...textField },
+      sizes: {
+        ...theme.sizes,
+        ...sizes,
+      },
+      textField: {
+        ...theme.textField,
+        // inherit global values
+        ...(colors.primary && {
+          color: {
+            ...theme.textField.color,
+            values: {
+              ...theme.textField.color.values,
+              color: colors.primary.values.color,
+            },
+          },
+          border: {
+            ...theme.textField.border,
+            values: {
+              ...theme.textField.border.values,
+              color: colors.primary.values.color,
+            },
+          },
+        }),
+        ...(colors.primaryBackground && {
+          background: {
+            ...theme.textField.border,
+            values: {
+              ...theme.textField.border.values,
+              color: colors.primaryBackground.values.color,
+            },
+          },
+        }),
+        ...textField,
+      },
       buttons: { ...theme.buttons, ...buttons },
     }
 
@@ -39,7 +71,7 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
 
     dispatch({
       type: 'CREATE_NEW_THEME',
-      payload: themeData,
+      payload: dataModel,
     })
   }
 
