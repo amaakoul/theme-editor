@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '@material-ui/core/Button'
 import Snackbar from '@material-ui/core/Snackbar'
 import { Alert } from '@material-ui/lab'
@@ -10,7 +10,7 @@ export default function AlertMessage({
   data = {}, // types of alerts, success, error, warning and info
   ...props
 }) {
-  const [open, setOpen] = React.useState(openFromParent)
+  const [open, setOpen] = useState(openFromParent)
 
   useEffect(() => {
     setOpen(openFromParent)
@@ -33,7 +33,7 @@ export default function AlertMessage({
           {data.message}
         </Alert>
       </Snackbar>
-      <Alert severity="info">This is an information message!</Alert>
+      {/* <Alert severity="info">This is an information message!</Alert> */}
     </div>
   )
 }

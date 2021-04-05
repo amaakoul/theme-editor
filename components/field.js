@@ -1,14 +1,28 @@
 import React, { useState } from 'react'
+import AlertMessage from '../components/alertMessage'
 
 // Component accept text, placeholder values and also pass what type of Input - input, textarea
-const Field = ({ text, type, placeholder, children, ...props }) => {
+const Field = ({ text, type, placeholder, children, data, value, ...props }) => {
   // Manage the state whether to show the label or the input box. By default, label will be shown.
   const [isEditing, setEditing] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [alertData, setAlertData] = useState({ value: '', type: '' })
 
   // Event handler while pressing any key while editing
   const handleSubmit = (event, type) => {
-    // Handle when key is pressed
-    if (event.key === 'Enter' || event.type === 'click') console.log('keys :>> ', event, type)
+    if (event.key === 'Enter' || event.type === 'click') {
+      // Handle when key is pressed
+      const { validator, values } = data
+      // build regex from attr schema
+      const regex = new RegExp(validator.join('').replace(',', '|'))
+      const isInputValid = regex.test(value || event.target.value)
+      setEditing(!isInputValid)
+      setOpen(true)
+      setAlertData({
+        type: isInputValid ? 'success' : 'error',
+        message: isInputValid ? 'saved!' : 'wrong format, please add space between values',
+      })
+    }
   }
 
   /*
@@ -20,7 +34,14 @@ const Field = ({ text, type, placeholder, children, ...props }) => {
   return (
     <section {...props}>
       {isEditing ? (
-        <div style={{}} onBlur={() => setEditing(false)} onKeyDown={e => handleSubmit(e, type)}>
+        <div
+          style={{
+            display: 'flex',
+            flexFlow: 'column',
+          }}
+          onBlur={() => {}}
+          onKeyDown={e => handleSubmit(e, type)}
+        >
           {children}
           <button onClick={handleSubmit}>submit</button>
         </div>
@@ -29,6 +50,9 @@ const Field = ({ text, type, placeholder, children, ...props }) => {
           <span>{text || placeholder || 'Field content'}</span>
         </div>
       )}
+      <AlertMessage open={open} data={alertData} callback={state => setOpen(state)}>
+        {' '}
+      </AlertMessage>
     </section>
   )
 }
