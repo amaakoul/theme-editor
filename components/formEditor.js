@@ -36,12 +36,14 @@ export default function FormEditor({ styles, container, onSubmit } = {}) {
     }
 
     // setState({ ...themeData })
+
     dispatch({
       type: 'CREATE_NEW_THEME',
       payload: themeData,
     })
   }
 
+  // Build form model
   const categories = Object.entries(theme || {}).reduce((acc, el) => {
     const [id, value] = [...el]
     return (acc = [
