@@ -67,8 +67,6 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
       buttons: { ...theme.buttons, ...buttons },
     }
 
-    // setState({ ...themeData })
-
     dispatch({
       type: 'CREATE_NEW_THEME',
       payload: dataModel,
@@ -98,11 +96,6 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
     setOpen(true)
   }
 
-  // const handleClose = (event, reason) => {
-  //   if (reason === 'clickaway') return
-  //   setOpen(false)
-  // }
-
   return (
     <div>
       <Paper elevation={3} style={{ backgroundColor: 'rgb(176 22 22)', padding: '1em' }}>
@@ -117,7 +110,10 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
 
         <AlertMessage
           open={open}
-          data={{ type: 'success', message: 'This is a success message!' }}
+          data={{
+            type: 'success',
+            message: 'your theme configuration has been saved successfully!',
+          }}
           callback={state => setOpen(state)}
         >
           {/* submit form */}
