@@ -5,7 +5,7 @@ export default (req, res) => {
     colors: {
       primary: {
         values: {
-          color: '#000000a',
+          color: '#000000',
         },
         validator: ['^#[a-z0-9.]+()'],
         template: '{color}',
@@ -116,7 +116,6 @@ export default (req, res) => {
         },
         validator: ['^#[a-z0-9.]+()'],
         template: '{color}',
-        // background: '#ffffff',
       },
     },
     buttons: {
