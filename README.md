@@ -1,6 +1,6 @@
 # Theme Editor
 
-This is a theme editor web application.
+A theme editor web application that allows the user to change the UI configuration and save it in the local storage.
 
 ## Tools used to build the App
 
