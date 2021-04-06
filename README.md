@@ -37,7 +37,6 @@ run test with watcher :
 npm run test:dev
 
 ```
-
 Please check scripts in package.json for the rest
 
 [API routes] can be accessed on [http://localhost:3000/api/theme-schema].
@@ -45,9 +44,13 @@ Please check scripts in package.json for the rest
 ## Features of the App
 
 Load the default configuration as an API Endpoint.
+
 Edit the theme configuration.
+
 Validate the fields (Enter Key press, Button press).
+
 Show Errors when fields are not valid.
+
 Save the edited theme to locale storage.
 
 ## Bonus Features
