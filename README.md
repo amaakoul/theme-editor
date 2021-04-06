@@ -6,14 +6,18 @@ This is a theme editor web application.
 
 React 17
 Redux : State management tool to sync the global data across the application.
+
 NextJS : Web framework, also used as an API to serve the theme config as static JSON.
+
 Jest, Enzyme, react-test-renderer : Testing framework.
-Eslint, Prettier : Code styling
-Material-ui : UI
+
+Eslint, Prettier : Code styling.
+
+Material-ui : UI.
 
 ## Getting Started
 
-run the development server:
+run the development server :
 
 ```bash
 npm run dev
