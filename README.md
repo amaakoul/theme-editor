@@ -51,7 +51,11 @@ Show Errors when fields are not valid.
 Save the edited theme to locale storage.
 
 ## Bonus Features
+
 Field validation after 5000ms of inactivity.
+
 Enter the user name and save it alongside the theme in the local storage.
+
 change the app color theme between (Red or White).
+
 toast notification to keep the user informed after actions.
