@@ -88,7 +88,7 @@ const Field = ({ text, type, placeholder, children, data, value, ...props }) => 
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
         >
-          <span>{text || placeholder || 'Field content'}</span>
+          <span role="placeholder" >{text || placeholder || 'Field content'}</span>
         </div>
       )}
       <AlertMessage open={open} data={alertData} callback={state => setOpen(state)}>

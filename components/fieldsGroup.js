@@ -59,7 +59,12 @@ export default function FieldsGroup(props) {
   return (
     <div className={classes.root}>
       {props.categories.map(({ id: categorieId, value }) => (
-        <Accordion key={categorieId} value={categorieId} style={props.styles.group}>
+        <Accordion
+          role="formGroup"
+          key={categorieId}
+          value={categorieId}
+          style={props.styles.group}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
