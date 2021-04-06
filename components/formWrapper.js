@@ -21,13 +21,12 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
   const store = useSelector(state => state)
   const dispatch = useDispatch()
   const { tick, theme } = store
-  console.log('data store :>> ', store)
   const router = useRouter()
+  console.log('store :>> ', store)
 
   // const [state, setState] = useState({})
-  // console.log('state payload :>> ', state)
 
-  const updateData = ({ colors, textField, sizes, buttons }) => {
+  const updateData = ({ colors = {}, textField = {}, sizes = {}, buttons = {} }) => {
     const dataModel = {
       colors: { ...theme.colors, ...colors },
       sizes: {
@@ -88,7 +87,6 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
     ])
   }, [])
 
-  console.log('categories :>> ', categories)
   const [open, setOpen] = useState(false)
 
   const handleClick = () => {
@@ -98,7 +96,7 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
 
   return (
     <div>
-      <Paper elevation={3} style={{ backgroundColor: 'rgb(176 22 22)', padding: '1em' }}>
+      <Paper elevation={3} style={styles.paper}>
         <h1>Theme Editor</h1>
 
         {/* Form */}
@@ -106,6 +104,7 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
           onClick={e => updateData({ ...e })}
           categories={categories}
           className={styles.grid}
+          styles={styles}
         ></FieldsGroup>
 
         <AlertMessage
@@ -129,11 +128,6 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
           </Button>
         </AlertMessage>
       </Paper>
-      <div className={styles.grid}>
-        <button className={styles.card} onClick={() => router.push('/')}>
-          GO BACK HOME
-        </button>
-      </div>
     </div>
   )
 }

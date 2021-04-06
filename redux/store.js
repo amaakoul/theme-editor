@@ -7,6 +7,8 @@ const reducer = (state = { tick: 'init' }, action) => {
   switch (action.type) {
     case 'DATA_ORIGIN':
       return { ...state, origin: action.payload }
+    case 'USER_DATA':
+      return { ...state, user: action.payload }
     case CREATE_NEW_THEME:
       return { ...state, theme: action.payload }
     case HYDRATE:
