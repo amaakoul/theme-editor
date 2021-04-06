@@ -12,7 +12,7 @@ const WelcomeMessage = ({ value, styles, user = 'null' }) => {
     setEditing(false)
   }
   return (
-    <div>
+    <div role="title">
       {value ? (
         <span className={styles.title}>
           Welcome Back, {}
