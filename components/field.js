@@ -65,6 +65,7 @@ const Field = ({ text, type, placeholder, children, data, value, ...props }) => 
           }}
           onBlur={() => {}}
           onChange={e => handleSubmit(e, type)}
+          onKeyPress={e => handleSubmit(e, type)}
         >
           {children}
           <div style={button.wrapper}>
@@ -88,7 +89,7 @@ const Field = ({ text, type, placeholder, children, data, value, ...props }) => 
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
         >
-          <span role="placeholder" >{text || placeholder || 'Field content'}</span>
+          <span role="placeholder">{text || placeholder || 'Field content'}</span>
         </div>
       )}
       <AlertMessage open={open} data={alertData} callback={state => setOpen(state)}>

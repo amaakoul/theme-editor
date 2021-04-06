@@ -11,6 +11,59 @@ import TextField from '@material-ui/core/TextField'
 
 export const TIMER = 5000 // can be changed to 300ms
 let VALIDATION_TIMEOUT
+const FieldWrapper = ({ value = [], categorieId, onClick }) => {
+  const [currentField, setcurrentField] = useState('')
+  const fields = (val = {}) =>
+    value.map(el => ({
+      ...el,
+      inputValue: '',
+      ...(val.id === el.id && {
+        ...el,
+        inputValue: val.inputValue || currentField,
+        error: val.error,
+      }),
+    }))
+
+  const [state, setState] = useState(fields)
+  const setError = payload => setState(fields({ ...payload }))
+
+  return state.map(({ id, inputValue = '', error, value = {} }) => (
+    <ListItem button divider key={id} value={id}>
+      <div key={id} style={{ width: 'inherit' }} value={id}>
+        <ListItemText primary={id} secondary={''} />
+        <Field
+          style={{ width: '100%', padding: '1.5em 1em' }}
+          text={`- ${value.alias || id} : ${swapTemplateVariables(value)}`}
+          placeholder={swapTemplateVariables(value)}
+          data={value}
+          value={swapTemplateVariables(value)}
+          type="input"
+        >
+          <span>{`- ${value.alias || id} : ${swapTemplateVariables(value)}`}</span>
+          <TextField
+            error={!!error}
+            id="standard-basic"
+            label={value.template || swapTemplateVariables(value)}
+            type="text"
+            name="task"
+            value={inputValue}
+            placeholder={value.template || swapTemplateVariables(value)}
+            onChange={event => {
+              setcurrentField(event.target.value)
+              setState(fields({ id, inputValue: event.target.value }))
+              validateField(event, value, categorieId, id, onClick, setError)
+            }}
+            onKeyPress={event => {
+              setcurrentField(event.target.value)
+              setState(fields({ id, inputValue: event.target.value }))
+              validateField(event, value, categorieId, id, onClick, setError)
+            }}
+          />
+        </Field>
+      </div>
+    </ListItem>
+  ))
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,30 +75,48 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const validateField = (event, value, props, categorieId, id) => {
+const validateField = (event, value, categorieId, id, onClick, setError) => {
   clearTimeout(VALIDATION_TIMEOUT)
   const { validator, values } = value
   const regex = new RegExp(validator.join('').replace(',', '|'))
   // build regex from attr schema
   const isInputValid = regex.test(event.target.value)
-  const payload = {
-    [categorieId]: {
-      [id]: {
-        ...value,
-        // slit user input to update in store
-        values: Object.keys(values).reduce((acc, cur, i) => {
-          acc[cur] = event.target.value.split(' ')[i]
-          return acc
-        }, values),
-      },
-    },
-  }
 
   // trigger click if the value is valid
   if (event.key === 'Enter' && isInputValid) {
-    props.onClick(payload)
-  } else if (isInputValid) {
-    VALIDATION_TIMEOUT = window.setTimeout(() => props.onClick(payload), TIMER)
+    onClick({
+      [categorieId]: {
+        [id]: {
+          ...value,
+          // slit user input to update in store
+          values: Object.keys(values).reduce((acc, cur, i) => {
+            acc[cur] = event.target.value.split(' ')[i]
+            return acc
+          }, values),
+        },
+      },
+    })
+  } else if (event.key === 'Enter' && !isInputValid) {
+    setError({ id, error: 'error' })
+  } else {
+    VALIDATION_TIMEOUT = window.setTimeout(
+      () =>
+        isInputValid
+          ? onClick({
+              [categorieId]: {
+                [id]: {
+                  ...value,
+                  // slit user input to update in store
+                  values: Object.keys(values).reduce((acc, cur, i) => {
+                    acc[cur] = event.target.value.split(' ')[i]
+                    return acc
+                  }, values),
+                },
+              },
+            })
+          : setError({ id, error: 'error' }),
+      TIMER,
+    )
   }
 }
 
@@ -54,7 +125,6 @@ const swapTemplateVariables = ({ values = {}, template = '' } = {}) =>
 
 export default function FieldsGroup(props) {
   const classes = useStyles()
-  const [editValue, setEditValue] = useState('')
 
   return (
     <div className={classes.root}>
@@ -75,35 +145,7 @@ export default function FieldsGroup(props) {
           <AccordionDetails>
             <List component="nav" className={classes.root}>
               <Divider />
-              {value.map(({ id, value = {} }) => (
-                <ListItem button divider key={id} value={id}>
-                  <div key={id} style={{ width: 'inherit' }} value={id}>
-                    <ListItemText primary={id} secondary={''} />
-                    <Field
-                      style={{ width: '100%', padding: '1.5em 1em' }}
-                      text={`- ${value.alias || id} : ${swapTemplateVariables(value)}`}
-                      placeholder={swapTemplateVariables(value)}
-                      data={value}
-                      value={editValue}
-                      type="input"
-                    >
-                      <span>{`- ${value.alias || id} : ${editValue}`}</span>
-                      <TextField
-                        id="standard-basic"
-                        label={value.template || swapTemplateVariables(value)}
-                        type="text"
-                        name="task"
-                        value={editValue}
-                        placeholder={value.template || swapTemplateVariables(value)}
-                        onChange={event => {
-                          setEditValue(event.target.value)
-                          validateField(event, value, props, categorieId, id)
-                        }}
-                      />
-                    </Field>
-                  </div>
-                </ListItem>
-              ))}
+              <FieldWrapper value={value} categorieId={categorieId} {...props}></FieldWrapper>
               <Divider light />
             </List>
           </AccordionDetails>

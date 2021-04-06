@@ -14,35 +14,35 @@ export default (req, res) => {
         values: {
           color: '#ffffff',
         },
-        validator: ['^[0-9A-Fa-f]{6}'],
+        validator: ['[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       secondary: {
         values: {
           color: '#ffffff',
         },
-        validator: ['^[0-9A-Fa-f]{6}'],
+        validator: ['[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       secondaryBackground: {
         values: {
           color: '#4a86e8',
         },
-        validator: ['^[0-9A-Fa-f]{6}'],
+        validator: ['[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       hightlight1: {
         values: {
           color: '#4a86e8',
         },
-        validator: ['^[0-9A-Fa-f]{6}'],
+        validator: ['[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       hightlight2: {
         values: {
           color: '#ffab40',
         },
-        validator: ['^[0-9A-Fa-f]{6}'],
+        validator: ['[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
     },
@@ -53,7 +53,7 @@ export default (req, res) => {
           float1: '1.1',
           unit: 'rem',
         },
-        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        validator: ['[0-9. ]+( )', ['px', 'em']],
         template: '{float1} {unit}',
       },
       h1: {
@@ -62,7 +62,7 @@ export default (req, res) => {
           float1: '1.4',
           unit: 'rem',
         },
-        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        validator: ['[0-9. ]+( )', ['px', 'em']],
         template: '{float1} {unit}',
       },
       h2: {
@@ -71,7 +71,7 @@ export default (req, res) => {
           float1: '1.2',
           unit: 'rem',
         },
-        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        validator: ['[0-9. ]+( )', ['px', 'em']],
         template: '{float1} {unit}',
       },
       borderWidth: {
@@ -80,7 +80,7 @@ export default (req, res) => {
           float1: '1',
           unit: 'px',
         },
-        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        validator: ['[0-9. ]+( )', ['px', 'em']],
         template: '{float1} {unit}',
       },
     },
@@ -90,14 +90,14 @@ export default (req, res) => {
           float1: '1.1',
           unit: 'rem',
         },
-        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        validator: ['[0-9. ]+( )', ['px', 'em']],
         template: '{float1} {unit}',
       },
       color: {
         values: {
           color: '#000000',
         },
-        validator: ['^[0-9A-Fa-f]{6}'],
+        validator: ['[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       border: {
@@ -107,14 +107,14 @@ export default (req, res) => {
           type: 'solid',
           color: '#000000',
         },
-        validator: ['^[0-9. ]+( )', ['px', 'em'], '[a-z.]+( )', '[0-9A-Fa-f]{6}'],
+        validator: ['[0-9. ]+( )', ['px', 'em'], '[a-z.]+( )', '[0-9A-Fa-f]{6}'],
         template: '{float1} {unit} {type} {color}',
       },
       background: {
         values: {
           color: '#ffffff',
         },
-        validator: ['^[0-9A-Fa-f]{6}'],
+        validator: ['[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
     },
@@ -124,7 +124,7 @@ export default (req, res) => {
           float1: '1.1',
           unit: 'rem',
         },
-        validator: ['^[0-9. ]+( )', ['px', 'em']],
+        validator: ['[0-9. ]+( )', ['px', 'em']],
         template: '{float1} {unit}',
       },
       color: {
@@ -133,14 +133,14 @@ export default (req, res) => {
           float2: '1.1',
           unit: 'rem',
         },
-        validator: ['^[0-9. ]+( )', '[0-9.]+( )', ['px', 'em']],
+        validator: ['[0-9. ]+( )', '[0-9.]+( )', ['px', 'em']],
         template: 'calc({float1}*{float2}{unit})',
       },
       background: {
         values: {
           color: '#4a86e8',
         },
-        validator: ['^[0-9A-Fa-f]{6}'],
+        validator: ['[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
     },
