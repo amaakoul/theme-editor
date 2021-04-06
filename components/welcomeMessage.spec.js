@@ -1,19 +1,19 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import WelcomeMessage from '../components/welcomeMessage'
-import TextField from '@material-ui/core/TextField'
 
 import { render, screen } from '@testing-library/react'
 const props = {
-  categories: [{ id: 'id01', value: [] }],
   styles: {},
+  user: 'someName',
 }
 const wrapper = shallow(<WelcomeMessage {...props} />)
 
 describe('Title', () => {
   it('should render without crashing', () => {
     expect(wrapper).toMatchSnapshot()
-    expect(wrapper.find(TextField)).toHaveLength(1)
+    render(<WelcomeMessage {...props} />)
+    expect(wrapper.find('span')).toHaveLength(3)
   })
   it('renders the right elements', () => {
     render(<WelcomeMessage {...props} />)
