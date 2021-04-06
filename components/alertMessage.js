@@ -33,7 +33,6 @@ export default function AlertMessage({
           {data.message}
         </Alert>
       </Snackbar>
-      {/* <Alert severity="info">This is an information message!</Alert> */}
     </div>
   )
 }

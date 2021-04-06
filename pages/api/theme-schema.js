@@ -7,42 +7,42 @@ export default (req, res) => {
         values: {
           color: '#000000',
         },
-        validator: ['^#[a-z0-9.]+()'],
+        validator: ['[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       primaryBackground: {
         values: {
           color: '#ffffff',
         },
-        validator: ['^#[a-z0-9.]+()'],
+        validator: ['^[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       secondary: {
         values: {
           color: '#ffffff',
         },
-        validator: ['^#[a-z0-9.]+()'],
+        validator: ['^[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       secondaryBackground: {
         values: {
           color: '#4a86e8',
         },
-        validator: ['^#[a-z0-9.]+()'],
+        validator: ['^[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       hightlight1: {
         values: {
           color: '#4a86e8',
         },
-        validator: ['^#[a-z0-9.]+()'],
+        validator: ['^[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       hightlight2: {
         values: {
           color: '#ffab40',
         },
-        validator: ['^#[a-z0-9.]+()'],
+        validator: ['^[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
     },
@@ -97,7 +97,7 @@ export default (req, res) => {
         values: {
           color: '#000000',
         },
-        validator: ['^#[a-z0-9.]+()'],
+        validator: ['^[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
       border: {
@@ -107,14 +107,14 @@ export default (req, res) => {
           type: 'solid',
           color: '#000000',
         },
-        validator: ['^[0-9. ]+( )', ['px', 'em'], '[a-z.]+( )', '#[a-z0-9.]+()'],
+        validator: ['^[0-9. ]+( )', ['px', 'em'], '[a-z.]+( )', '[0-9A-Fa-f]{6}'],
         template: '{float1} {unit} {type} {color}',
       },
       background: {
         values: {
           color: '#ffffff',
         },
-        validator: ['^#[a-z0-9.]+()'],
+        validator: ['^[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
     },
@@ -140,7 +140,7 @@ export default (req, res) => {
         values: {
           color: '#4a86e8',
         },
-        validator: ['^#[a-z0-9.]+()'],
+        validator: ['^[0-9A-Fa-f]{6}'],
         template: '{color}',
       },
     },

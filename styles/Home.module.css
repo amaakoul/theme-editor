@@ -115,9 +115,18 @@
   border-radius: 0.25em;
 }
 
+@media (max-width: 780px) {
+  .main {
+    padding: 5rem 1rem;
+  }
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+  .main {
+    padding: 5rem 0;
   }
 }
