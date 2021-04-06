@@ -10,7 +10,7 @@ Redux : State management tool to sync the global data across the application.
 
 NextJS : Server Side framework, used as an API to serve the theme config as static JSON.
 
-Jest, Enzyme, react-test-renderer : Testing framework.
+Jest, Enzyme, react-test-renderer : Testing frameworks.
 
 Eslint, Prettier : Code styling.
 
