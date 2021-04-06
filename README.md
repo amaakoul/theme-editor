@@ -4,7 +4,7 @@ A theme editor web application that allows the user to change the UI configurati
 
 ## Tools used to build the App
 
-React 17
+React 17.
 Redux : State management tool to sync the global data across the application.
 
 NextJS : Web framework, also used as an API to serve the theme config as static JSON.
