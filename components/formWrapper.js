@@ -25,7 +25,6 @@ export default function FormWrapper({ styles, container, onSubmit } = {}) {
   console.log('store :>> ', store)
 
   // const [state, setState] = useState({})
-
   const updateData = ({ colors = {}, textField = {}, sizes = {}, buttons = {} }) => {
     const dataModel = {
       colors: { ...theme.colors, ...colors },

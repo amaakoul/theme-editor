@@ -4,6 +4,7 @@ export default (req, res) => {
   res.status(200).json({
     colors: {
       primary: {
+        alias: 'font-color',
         values: {
           color: '#000000',
         },
@@ -11,6 +12,7 @@ export default (req, res) => {
         template: '{color}',
       },
       primaryBackground: {
+        alias: 'background',
         values: {
           color: '#ffffff',
         },
@@ -18,6 +20,7 @@ export default (req, res) => {
         template: '{color}',
       },
       secondary: {
+        alias: 'font-color',
         values: {
           color: '#ffffff',
         },
@@ -25,6 +28,7 @@ export default (req, res) => {
         template: '{color}',
       },
       secondaryBackground: {
+        alias: 'background',
         values: {
           color: '#4a86e8',
         },
@@ -32,6 +36,7 @@ export default (req, res) => {
         template: '{color}',
       },
       hightlight1: {
+        alias: 'background',
         values: {
           color: '#4a86e8',
         },
@@ -39,6 +44,7 @@ export default (req, res) => {
         template: '{color}',
       },
       hightlight2: {
+        alias: 'background',
         values: {
           color: '#ffab40',
         },
