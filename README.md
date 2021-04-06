@@ -8,7 +8,7 @@ React 17.
 
 Redux : State management tool to sync the global data across the application.
 
-NextJS : Server Side framework, used as an API to serve the theme config as static JSON.
+NextJS : Server Side framework, used as an API to serve the theme config as static JSON [http://localhost:3000/api/theme-schema].
 
 Jest, Enzyme, react-test-renderer : Testing frameworks.
 
