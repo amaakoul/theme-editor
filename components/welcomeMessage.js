@@ -48,7 +48,7 @@ const WelcomeMessage = ({ value, styles, user = 'null' }) => {
               type="text"
               name="task"
               value={userInput}
-              placeholder=""
+              placeholder="your name"
               onKeyDown={event => (event.key === 'Enter' ? validate() : {})}
               onChange={event => setEditingValue(event.target.value)}
             />
