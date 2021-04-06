@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import AlertMessage from '../components/alertMessage'
 import Button from '@material-ui/core/Button'
-import { TIMER } from '../components/fieldsGroup'
+import { TIMER } from '../components/fieldWrapper'
+
 let validationTimeout
 
 const button = {
