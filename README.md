@@ -42,6 +42,17 @@ A Delete button for all saved data in local storage.
 
 ## Getting Started
 
+Install dependecies with your fav package manager (YARN, NPM).
+
+```bash
+npm install
+
+```
+Should work with all node versions from (10v > 14v).
+troubleshooting : If you face any issues use NVM to switch to one of the following tested NodeJS versions : ```v10.13.0, v12.13.0, v14.15.0```
+npm version : 6.12.0 || 6.4.1
+or contact me @ makoul.ahmed@gmail.com
+
 run the development server :
 
 ```bash
