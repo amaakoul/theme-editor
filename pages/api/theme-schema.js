@@ -56,48 +56,48 @@ export default (req, res) => {
       text: {
         alias: 'fontSize',
         values: {
-          float1: '1.1',
+          float: '1.1',
           unit: 'rem',
         },
-        validator: ['[0-9. ]+( )', ['px', 'em']],
-        template: '{float1} {unit}',
+        validator: ['[0-9. ]+( )', ['px', 'em', 'rem']],
+        template: '{float} {unit}',
       },
       h1: {
         alias: 'fontSize',
         values: {
-          float1: '1.4',
+          float: '1.4',
           unit: 'rem',
         },
-        validator: ['[0-9. ]+( )', ['px', 'em']],
-        template: '{float1} {unit}',
+        validator: ['[0-9. ]+( )', ['px', 'em', 'rem']],
+        template: '{float} {unit}',
       },
       h2: {
         alias: 'fontSize',
         values: {
-          float1: '1.2',
+          float: '1.2',
           unit: 'rem',
         },
-        validator: ['[0-9. ]+( )', ['px', 'em']],
-        template: '{float1} {unit}',
+        validator: ['[0-9. ]+( )', ['px', 'em', 'rem']],
+        template: '{float} {unit}',
       },
       borderWidth: {
         alias: 'borderWidth',
         values: {
-          float1: '1',
+          float: '1',
           unit: 'px',
         },
-        validator: ['[0-9. ]+( )', ['px', 'em']],
-        template: '{float1} {unit}',
+        validator: ['[0-9. ]+( )', ['px', 'em', 'rem']],
+        template: '{float} {unit}',
       },
     },
     textField: {
       textSize: {
         values: {
-          float1: '1.1',
+          float: '1.1',
           unit: 'rem',
         },
-        validator: ['[0-9. ]+( )', ['px', 'em']],
-        template: '{float1} {unit}',
+        validator: ['[0-9. ]+( )', ['px', 'em', 'rem']],
+        template: '{float} {unit}',
       },
       color: {
         values: {
@@ -108,13 +108,13 @@ export default (req, res) => {
       },
       border: {
         values: {
-          float1: '1',
+          float: '1',
           unit: 'px',
           type: 'solid',
           color: '#000000',
         },
-        validator: ['[0-9. ]+( )', ['px', 'em'], '[a-z.]+( )', '[0-9A-Fa-f]{6}'],
-        template: '{float1} {unit} {type} {color}',
+        validator: ['[0-9. ]+( )', ['px', 'em', 'rem'], '[a-z.]+( )', '[0-9A-Fa-f]{6}'],
+        template: '{float} {unit} {type} {color}',
       },
       background: {
         values: {
@@ -127,20 +127,20 @@ export default (req, res) => {
     buttons: {
       textSize: {
         values: {
-          float1: '1.1',
+          float: '1.1',
           unit: 'rem',
         },
-        validator: ['[0-9. ]+( )', ['px', 'em']],
-        template: '{float1} {unit}',
+        validator: ['[0-9. ]+( )', ['px', 'em', 'rem']],
+        template: '{float} {unit}',
       },
       color: {
         values: {
-          float1: '1.1',
+          float: '1.1',
           float2: '1.1',
           unit: 'rem',
         },
-        validator: ['[0-9. ]+( )', '[0-9.]+( )', ['px', 'em']],
-        template: 'calc({float1}*{float2}{unit})',
+        validator: ['[0-9. ]+( )', '[0-9.]+( )', ['px', 'em', 'rem']],
+        template: 'calc({float}*{float2}{unit})',
       },
       background: {
         values: {

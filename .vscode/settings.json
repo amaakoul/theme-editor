@@ -1,5 +1,4 @@
 {
-  "prettier.disableLanguages": [],
   "files.eol": "\n",
   "vetur.format.defaultFormatter.css": "none",
   "vetur.format.defaultFormatter.html": "none",
