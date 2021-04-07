@@ -27,5 +27,4 @@ const makeStore = context => createStore(reducer)
 export const wrapper = createWrapper(makeStore, { debug: true })
 
 // const store = createStore(rootReducer)
-
 export default createStore(rootReducer) // store
