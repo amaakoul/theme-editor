@@ -28,7 +28,7 @@ const Field = ({ text, type, placeholder, children, data, value, ...props }) => 
     // Handle when key is pressed
     const { validator, values } = data
     // build regex from attr schema
-    const regex = new RegExp(validator.join('').replace(',', '|'))
+    const regex = new RegExp(validator.join('').replaceAll(',', '|'))
     const isInputValid = regex.test(event.target.value || value)
 
     if (event.key === 'Enter' || event.type === 'click') {

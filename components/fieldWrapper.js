@@ -21,6 +21,12 @@ export default function FieldWrapper({ value = [], categorieId, onClick }) {
 
   const [state, setState] = useState(fields)
   const setError = payload => setState(fields({ ...payload }))
+  const updateData = ({ event, id, value, categorieId, onClick, setError }) => {
+    setcurrentField(event.target.value)
+    setState(fields({ id, inputValue: event.target.value }))
+    validateField(event, value, categorieId, id, onClick, setError)
+  }
+
   return state.map(({ id, inputValue = '', error, value = {} }) => (
     <ListItem button divider key={id} value={id}>
       <div key={id} style={{ width: 'inherit' }} value={id}>
@@ -33,7 +39,9 @@ export default function FieldWrapper({ value = [], categorieId, onClick }) {
           value={swapTemplateVariables(value)}
           type="input"
         >
-          <span>{`- ${value.alias || id} : ${swapTemplateVariables(value)}`}</span>
+          <span style={{ height: '2em', color: '#0f239e' }}>
+            {`- ${value.alias || id} : ${swapTemplateVariables(value)}`}
+          </span>
           <TextField
             error={!!error}
             id="standard-basic"
@@ -42,16 +50,8 @@ export default function FieldWrapper({ value = [], categorieId, onClick }) {
             name="task"
             value={inputValue}
             placeholder={value.template || swapTemplateVariables(value)}
-            onChange={event => {
-              setcurrentField(event.target.value)
-              setState(fields({ id, inputValue: event.target.value }))
-              validateField(event, value, categorieId, id, onClick, setError)
-            }}
-            onKeyPress={event => {
-              setcurrentField(event.target.value)
-              setState(fields({ id, inputValue: event.target.value }))
-              validateField(event, value, categorieId, id, onClick, setError)
-            }}
+            onChange={event => updateData({ event, id, value, categorieId, onClick, setError })}
+            onKeyPress={event => updateData({ event, id, value, categorieId, onClick, setError })}
           />
         </Field>
       </div>
@@ -59,49 +59,49 @@ export default function FieldWrapper({ value = [], categorieId, onClick }) {
   ))
 }
 
+// Validation for each field
 const validateField = (event, value, categorieId, id, onClick, setError) => {
   clearTimeout(VALIDATION_TIMEOUT)
   const { validator, values } = value
-  const regex = new RegExp(validator.join('').replace(',', '|'))
   // build regex from attr schema
+  const regex = new RegExp(validator.join('').replaceAll(',', '|'))
   const isInputValid = regex.test(event.target.value)
 
   // trigger click if the value is valid
-  if (event.key === 'Enter' && isInputValid) {
-    onClick({
-      [categorieId]: {
-        [id]: {
-          ...value,
-          // slit user input to update in store
-          values: Object.keys(values).reduce((acc, cur, i) => {
-            acc[cur] = event.target.value.split(' ')[i]
-            return acc
-          }, values),
-        },
-      },
-    })
-  } else if (event.key === 'Enter' && !isInputValid) {
-    setError({ id, error: 'error' })
-  } else {
-    VALIDATION_TIMEOUT = window.setTimeout(
-      () =>
-        isInputValid
-          ? onClick({
-              [categorieId]: {
-                [id]: {
-                  ...value,
-                  // slit user input to update in store
-                  values: Object.keys(values).reduce((acc, cur, i) => {
-                    acc[cur] = event.target.value.split(' ')[i]
-                    return acc
-                  }, values),
-                },
+  if (event.key === 'Enter')
+    return isInputValid
+      ? onClick({
+          [categorieId]: {
+            [id]: {
+              ...value,
+              // slit user input to update in store
+              values: Object.keys(values).reduce((acc, cur, i) => {
+                acc[cur] = event.target.value.split(' ')[i]
+                return acc
+              }, values),
+            },
+          },
+        })
+      : setError({ id, error: 'error' }) // trigger error
+
+  VALIDATION_TIMEOUT = window.setTimeout(
+    () =>
+      isInputValid
+        ? onClick({
+            [categorieId]: {
+              [id]: {
+                ...value,
+                // slit user input to update in store
+                values: Object.keys(values).reduce((acc, cur, i) => {
+                  acc[cur] = event.target.value.split(' ')[i]
+                  return acc
+                }, values),
               },
-            })
-          : setError({ id, error: 'error' }),
-      TIMER,
-    )
-  }
+            },
+          })
+        : setError({ id, error: 'error' }), // trigger error when not valid
+    TIMER,
+  )
 }
 
 const swapTemplateVariables = ({ values = {}, template = '' } = {}) =>
