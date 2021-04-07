@@ -26,7 +26,7 @@ const getLocalStorage = async () => {
 
 export const getStaticProps = wrapper.getStaticProps(({ store, preview = '' }) => {
   // access what was set in the previous page
-  store.dispatch({ type: 'TICK', payload: 'was set in other pagee' + preview })
+  store.dispatch({ type: 'TICK', payload: 'was set in other page ' + preview })
 })
 
 const createConf = (c1, c2, c3) => ({
@@ -86,7 +86,7 @@ export default function Home({ Component, pageProps } = {}) {
   }
   const saveInStorage = success => {
     window.localStorage.setItem('theme', JSON.stringify(store.theme))
-    // setEditing(success) // to close the form on success
+    // setEditing(success) // to close global form on success
   }
   const handleClick = ({ event, page = 'home' }) => {
     event.preventDefault()
@@ -101,7 +101,7 @@ export default function Home({ Component, pageProps } = {}) {
   return (
     <div className={styles.container} {...globalStyle.wrapper}>
       <Head>
-        <title>Create Theme Editor App</title>
+        <title>Theme Editor App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
