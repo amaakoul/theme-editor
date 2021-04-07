@@ -38,6 +38,8 @@ change the app color theme between (Red or White).
 
 toast notification to keep the user informed after actions.
 
+A Delete button for all saved data in local storage.
+
 ## Getting Started
 
 run the development server :
